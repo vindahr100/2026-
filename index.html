@@ -405,6 +405,7 @@ function showDetail(eid){
   $('mInfo').innerHTML = `部門：<b>${escapeHtml(e.dept_name||'—')}</b>　·　群組：<b>${escapeHtml(e.group||'—')}</b>　·　已評月數：<b>${cnt} / ${DATA.months.length}</b>　·　平均：<b>${avg}</b>`;
 
   const fmtPct = v => (v == null) ? '—' : (v * 100).toFixed(1) + '%';
+  const fmtPct2 = v => (v == null) ? '—' : (v * 100).toFixed(2) + '%';
   const fmtNum = v => (v == null) ? '—' : (Math.round(v * 100) / 100).toString();
   const fmtMoney = v => (v == null) ? '—' : 'NT$ ' + Math.round(v).toLocaleString();
   const hasKpi = rec => rec && (rec.days!=null || rec.grpRate!=null || rec.evalScore!=null || rec.evalRate!=null || rec.perfRate!=null || rec.workRatio!=null || rec.payable!=null || rec.actual!=null);
@@ -418,10 +419,10 @@ function showDetail(eid){
         <td colspan="3">
           <div class="kpi-panel">
             <div class="kpi-item"><div class="k-lab">在職日曆天數</div><div class="k-val">${rec.days != null ? Math.round(rec.days) + ' 天' : '—'}</div></div>
-            <div class="kpi-item"><div class="k-lab">群組指標達成率</div><div class="k-val">${fmtPct(rec.grpRate)}</div></div>
+            <div class="kpi-item"><div class="k-lab">群組指標達成率</div><div class="k-val">${fmtPct2(rec.grpRate)}</div></div>
             <div class="kpi-item"><div class="k-lab">每月考評</div><div class="k-val">${rec.evalScore != null ? Math.round(rec.evalScore) : '—'}</div></div>
             <div class="kpi-item"><div class="k-lab">考評成績達成率</div><div class="k-val">${fmtPct(rec.evalRate)}</div></div>
-            <div class="kpi-item"><div class="k-lab">月績效指標總達成率</div><div class="k-val">${fmtPct(rec.perfRate)}</div></div>
+            <div class="kpi-item"><div class="k-lab">月績效指標總達成率</div><div class="k-val">${fmtPct2(rec.perfRate)}</div></div>
             <div class="kpi-item gold"><div class="k-lab">在職比例後應發月績效獎金</div><div class="k-val">${fmtMoney(rec.payable)}</div></div>
             <div class="kpi-item"><div class="k-lab">工時貢獻比例</div><div class="k-val">${fmtPct(rec.workRatio)}</div></div>
             <div class="kpi-item gold"><div class="k-lab">實發月績效獎金</div><div class="k-val">${fmtMoney(rec.actual)}</div></div>
